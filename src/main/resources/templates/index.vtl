@@ -1,0 +1,9 @@
+<h1>Choose your desired location</h1>
+#if($locations)
+  <ul>
+  #foreach($location in $locations)
+    <li><a href="#">$location.getName()</a></li>
+  #end
+#else
+  Sorry, there are no locations at this time.
+##($location.getBars().size())**
