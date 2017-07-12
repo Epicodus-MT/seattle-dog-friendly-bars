@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class App {
   public static void main(String[] args) {
     String layout = "templates/layout.vtl";
+    staticFileLocation("/public");
 
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
