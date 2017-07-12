@@ -16,5 +16,13 @@ public class App {
       model.put("locations", Location.all());
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    post("/locations", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String locationName = request.queryParams("name");
+      Location newLocation = new Location(locationName);
+      response.redirect("/");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 }

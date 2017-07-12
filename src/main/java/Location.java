@@ -8,6 +8,7 @@ public class Location {
 
   public Location(String name) {
     this.name = name;
+    this.save();
   }
 
   public String getName() {
