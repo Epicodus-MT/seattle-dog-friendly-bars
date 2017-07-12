@@ -7,4 +7,10 @@ public class LocationTest {
 
   @Rule
   public DatabaseRule database = new DatabaseRule();
+
+  @Test
+  public void location_instantiatesCorrectly_true() {
+    Location testLocation = new Location("Ballard");
+    assertEquals(true, testLocation instanceof Location);
+  }
 }
