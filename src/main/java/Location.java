@@ -19,13 +19,23 @@ public class Location {
     return id;
   }
 
-  public void save() {
+  private void save() {
     String sql = "INSERT INTO locations (name) VALUES (:name);";
     try(Connection con = DB.sql2o.open()) {
       this.id = (int) con.createQuery(sql, true)
       .addParameter("name", this.name)
       .executeUpdate()
       .getKey();
+    }
+  }
+
+  public List<Bar> getBars() {
+    String sql = "SELECT * FROM bars WHERE locationId=:id;";
+    try(Connection con = DB.sql2o.open()) {
+      //ADD TRY/CATCH TO RETURN NULL IF NONE
+      return con.createQuery(sql)
+      .addParameter("id", this.id)
+      .executeAndFetch(Bar.class);
     }
   }
 
@@ -42,10 +52,10 @@ public class Location {
   public static List<Location> all() {
     String sql = "SELECT id, name FROM locations;";
     try(Connection con = DB.sql2o.open()) {
+      //ADD TRY/CATCH TO RETURN NULL IF NONE
       return con.createQuery(sql).executeAndFetch(Location.class);
     }
   }
-
 
   @Override
   public boolean equals(Object location) {
