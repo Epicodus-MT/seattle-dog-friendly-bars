@@ -13,4 +13,10 @@ public class LocationTest {
     Location testLocation = new Location("Ballard");
     assertEquals(true, testLocation instanceof Location);
   }
+
+  @Test
+  public void getName_returnsLocationName_Ballard() {
+    Location testLocation = new Location("Ballard");
+    assertEquals("Ballard", testLocation.getName());
+  }
 }
