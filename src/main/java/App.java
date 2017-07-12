@@ -24,5 +24,13 @@ public class App {
       response.redirect("/");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    get("/location/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/location");
+      Location routeLocation = Location.find(Integer.parseInt(request.params(":id")));
+      model.put("location", routeLocation);
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 }

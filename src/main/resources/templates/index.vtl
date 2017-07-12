@@ -6,7 +6,7 @@
       <p>Click on a location to view the dog-friendly bars in that area</p>
       <ul>
         #foreach($location in $locations)
-          <li><a href="#">$location.getName()</a></li>
+          <li><a href="/location/$location.getId()">$location.getName()</a></li>
         #end
       </ul>
     #else

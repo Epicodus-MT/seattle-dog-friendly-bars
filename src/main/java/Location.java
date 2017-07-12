@@ -15,6 +15,10 @@ public class Location {
     return name;
   }
 
+  public int getId() {
+    return id;
+  }
+
   public void save() {
     String sql = "INSERT INTO locations (name) VALUES (:name);";
     try(Connection con = DB.sql2o.open()) {
@@ -25,6 +29,16 @@ public class Location {
     }
   }
 
+  public static Location find(int id) {
+    String sql = "SELECT * FROM locations WHERE id=:id;";
+    try(Connection con = DB.sql2o.open()) {
+      Location location = con.createQuery(sql)
+      .addParameter("id", id)
+      .executeAndFetchFirst(Location.class);
+      return location;
+    }
+  }
+
   public static List<Location> all() {
     String sql = "SELECT id, name FROM locations;";
     try(Connection con = DB.sql2o.open()) {
@@ -32,9 +46,6 @@ public class Location {
     }
   }
 
-  public int getId() {
-    return id;
-  }
 
   @Override
   public boolean equals(Object location) {
