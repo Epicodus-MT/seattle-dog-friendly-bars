@@ -57,9 +57,14 @@ public class LocationTest {
   @Test
   public void getBars_retrieveAllBarsFromDatabase_barList() {
     Location testLocation = new Location("Ballard");
-    Bar testBar1 = new Bar("Flatstick", testLocation.getId(), "240 2nd Ave S, Seattle, WA 98104");
-    Bar testBar2 = new Bar("Dutchess", testLocation.getId(), "240 2nd Ave S, Seattle, WA 98104");
+    Bar testBar1 = new Bar("Flatstick", testLocation.getId(), "240 2nd Ave S", "Seattle", "WA", 98104);
+    Bar testBar2 = new Bar("Another Bar", testLocation.getId(), "240 2nd Ave S", "Seattle", "WA", 98104);
     Bar[] bars = new Bar[] { testBar1, testBar2 };
-    assertTrue(testLocation.getBars().containsAll(Arrays.asList(bars)));
+    System.out.println("bars array: " + bars[0].getName());
+    System.out.println("bars array: " + bars[1].getName());
+    System.out.println("location get bars method: " + testLocation.getBars().get(0).getName());
+    // assertEquals(Arrays.asList(bars), testLocation.getBars());
+    assertTrue(testLocation.getBars().get(0).equals(testBar1));
+    assertTrue(testLocation.getBars().get(1).equals(testBar2));
   }
 }
