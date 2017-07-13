@@ -51,7 +51,9 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("template", "templates/bar.vtl");
       Bar routeBar = Bar.find(Integer.parseInt(request.params("id")));
+      Location routeLocation = Location.find(Integer.parseInt(request.params("locationId")));
       model.put("bar", routeBar);
+      model.put("location", routeLocation);
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
   }

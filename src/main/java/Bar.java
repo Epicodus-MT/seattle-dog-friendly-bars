@@ -44,6 +44,22 @@ public class Bar {
     return id;
   }
 
+  public String getStreet() {
+    return street;
+  }
+
+  public String getCity() {
+    return city;
+  }
+
+  public String getState() {
+    return state;
+  }
+
+  public Integer getZip() {
+    return zip;
+  }
+
   public static Bar find(int id) {
     String sql = "SELECT * FROM bars WHERE id=:id;";
     try(Connection con = DB.sql2o.open()) {
