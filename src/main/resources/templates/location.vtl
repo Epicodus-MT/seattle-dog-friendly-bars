@@ -1,25 +1,54 @@
 <h1 class="jumbotron">$location.getName()</h1>
 <div class="row">
- <div class="col-md-6">
-   <h3>Choose a bar:</h3>
-   #if($location.getBars().size() > 0)
-     <ul>
-       #foreach($bar in $location.getBars())
-         <li><a href="/location/$location.getId()/bar/$bar.getId()">$bar.getName()</a></li>
-       #end
-     </ul>
-   #else
-     <p>There are no bars listed yet!</p>
-   #end
- </div>
- <div class="col-md-6">
-   <h3>Add new bar to this area:</h3>
-   <form action="/bars" method="post">
-     <div class="form-inline">
-       <label for="name">Bar Name:</label>
-       <input class="form-control" type="text" id="name" name="name">
-       <button type="submit" class="btn btn-success">Add Bar</button>
-     </div>
-   </form>
- </div>
+  <div class="col-md-6">
+    <h3>Choose a bar:</h3>
+    #if($location.getBars().size() > 0)
+      <ul>
+        #foreach($bar in $location.getBars())
+          <li><a href="/location/$location.getId()/bar/$bar.getId()">$bar.getName()</a></li>
+        #end
+      </ul>
+    #else
+    <p>There are no bars listed yet!</p>
+  #end
+</div>
+<div class="col-md-6">
+  <h3>Add new bar to this area:</h3>
+    <div class="row">
+      <form action="/bars" method="post" class="form-horizontal">
+        <input id="locationId" name="locationId" type="hidden" value="$location.getId()">
+        <div class="form-group">
+          <label for="name" class="control-label col-md-2">Bar Name:</label>
+          <div class="col-md-10">
+            <input class="form-control" type="text" id="name" name="name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="street" class="control-label col-md-2">Street:</label>
+          <div class="col-md-10">
+            <input class="form-control" type="text" id="street" name="street">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="city" class="control-label col-md-2">City:</label>
+          <div class="col-md-10">
+            <input class="form-control" type="text" id="city" name="city">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="state" class="control-label col-md-2">State:</label>
+          <div class="col-md-10">
+            <input class="form-control" type="text" id="state" name="state">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="zip" class="control-label col-md-2">Zip Code:</label>
+          <div class="col-md-10">
+            <input class="form-control" type="text" id="zip" name="zip">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success">Add Bar</button>
+      </form>
+    </div>
+  </div>
 </div>

@@ -32,5 +32,19 @@ public class App {
       model.put("location", routeLocation);
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    post("/bars", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String barName = request.queryParams("name");
+      Integer locationId = Integer.parseInt(request.queryParams("locationId"));
+      String street = request.queryParams("street");
+      String city = request.queryParams("city");
+      String state = request.queryParams("state");
+      Integer zip = Integer.parseInt(request.queryParams("zip"));
+      Bar newBar = new Bar(barName, locationId, street, city, state, zip);
+      String url = String.format("/location/%d", locationId);
+      response.redirect(url);
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 }
