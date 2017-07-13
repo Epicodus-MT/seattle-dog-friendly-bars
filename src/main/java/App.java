@@ -46,5 +46,13 @@ public class App {
       response.redirect(url);
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    get("/location/:locationId/bar/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/bar.vtl");
+      Bar routeBar = Bar.find(Integer.parseInt(request.params("id")));
+      model.put("bar", routeBar);
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 }

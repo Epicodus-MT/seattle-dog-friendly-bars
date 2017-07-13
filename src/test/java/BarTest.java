@@ -27,4 +27,11 @@ public class BarTest {
     Bar testBar2 = new Bar("Flatstick", 1, "240 2nd Ave S", "Seattle", "WA", 98104);
     assertEquals(testBar1.getId() + 1, testBar2.getId());
   }
+
+  @Test
+  public void find_retrieveBar_true() {
+    Bar testBar1 = new Bar("Flatstick", 1, "240 2nd Ave S", "Seattle", "WA", 98104);
+    Bar testBar2 = new Bar("Flatstick", 1, "240 2nd Ave S", "Seattle", "WA", 98104);
+    assertEquals(testBar2, Bar.find(testBar2.getId()));
+  }
 }

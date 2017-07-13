@@ -44,6 +44,17 @@ public class Bar {
     return id;
   }
 
+  public static Bar find(int id) {
+    String sql = "SELECT * FROM bars WHERE id=:id;";
+    try(Connection con = DB.sql2o.open()) {
+      Bar bar = con.createQuery(sql)
+      .addParameter("id", id)
+      .executeAndFetchFirst(Bar.class);
+      return bar;
+    }
+  }
+
+
   @Override
   public boolean equals(Object bar) {
     if(!(bar instanceof Bar)) {
