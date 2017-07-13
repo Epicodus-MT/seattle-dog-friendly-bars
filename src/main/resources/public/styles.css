@@ -5,3 +5,7 @@ h1 {
 .backButton {
   vertical-align: bottom;
 }
+
+.rating {
+  font-weight: bold;
+}

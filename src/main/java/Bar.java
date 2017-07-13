@@ -36,6 +36,16 @@ public class Bar {
     }
   }
 
+  public List<Comment> getComments() {
+    String sql = "SELECT * FROM comments WHERE barId=:id;";
+    try(Connection con = DB.sql2o.open()) {
+      //ADD TRY/CATCH TO RETURN NULL IF NONE
+      return con.createQuery(sql)
+      .addParameter("id", this.id)
+      .executeAndFetch(Comment.class);
+    }
+  }
+
   public String getName() {
     return name;
   }
@@ -69,7 +79,6 @@ public class Bar {
       return bar;
     }
   }
-
 
   @Override
   public boolean equals(Object bar) {

@@ -34,4 +34,14 @@ public class BarTest {
     Bar testBar2 = new Bar("Flatstick", 1, "240 2nd Ave S", "Seattle", "WA", 98104);
     assertEquals(testBar2, Bar.find(testBar2.getId()));
   }
+
+  @Test
+  public void getComments_retrieveAllBarsFromDatabase_CommentList() {
+    Bar testBar1 = new Bar("Flatstick", 1, "240 2nd Ave S", "Seattle", "WA", 98104);
+    Comment commentTest1 = new Comment("Shitty bar", 1, testBar1.getId(), "Joe");
+    Comment commentTest2 = new Comment("Shitty bar", 1, testBar1.getId(), "Joe");
+    Comment[] comments = new Comment[] { commentTest1, commentTest2 };
+    assertTrue(testBar1.getComments().get(0).equals(commentTest1));
+    assertTrue(testBar1.getComments().get(1).equals(commentTest2));
+  }
 }

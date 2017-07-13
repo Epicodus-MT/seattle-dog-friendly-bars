@@ -51,9 +51,26 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("template", "templates/bar.vtl");
       Bar routeBar = Bar.find(Integer.parseInt(request.params("id")));
+      System.out.println(request.params("id"));
+
+      System.out.println(routeBar);
       Location routeLocation = Location.find(Integer.parseInt(request.params("locationId")));
+      System.out.println(routeLocation);
       model.put("bar", routeBar);
       model.put("location", routeLocation);
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/comments", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String comment = request.queryParams("comment");
+      String name = request.queryParams("name");
+      Integer rating = Integer.parseInt(request.queryParams("rating"));
+      Integer locationId = Integer.parseInt(request.queryParams("locationId"));
+      Integer barId = Integer.parseInt(request.queryParams("barId"));
+      Comment newComment = new Comment(comment, rating, barId, name);
+      String url = String.format("/location/%d/bar/%d", locationId, barId);
+      response.redirect(url);
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
   }
