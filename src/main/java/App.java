@@ -52,10 +52,19 @@ public class App {
       model.put("template", "templates/bar.vtl");
       Bar routeBar = Bar.find(Integer.parseInt(request.params("id")));
       System.out.println(request.params("id"));
-
+      // public String averageRating(List<Comment> comments) {
+      float average = 0;
+      int total = 0;
+      for(Comment comment : routeBar.getComments()) {
+        total += comment.getRating();
+      }
+      average = (float) total / routeBar.getComments().size();
+      String averageString = String.format("%.2f", average);
+      // }
       System.out.println(routeBar);
       Location routeLocation = Location.find(Integer.parseInt(request.params("locationId")));
       System.out.println(routeLocation);
+      model.put("average", averageString);
       model.put("bar", routeBar);
       model.put("location", routeLocation);
       return new ModelAndView(model, layout);

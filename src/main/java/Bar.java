@@ -36,6 +36,16 @@ public class Bar {
     }
   }
 
+  // public String averageRating(List<Comment> comments) {
+  //   float average = 0;
+  //   int total = 0;
+  //   for(Comment comment : comments) {
+  //     total += comment.getRating();
+  //   }
+  //   average = (float) total / comments.size();
+  //   return String.format("%.2", average);
+  // }
+
   public List<Comment> getComments() {
     String sql = "SELECT * FROM comments WHERE barId=:id;";
     try(Connection con = DB.sql2o.open()) {
