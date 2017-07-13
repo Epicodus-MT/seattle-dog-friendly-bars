@@ -40,6 +40,10 @@ public class Bar {
     return name;
   }
 
+  public int getId() {
+    return id;
+  }
+
   @Override
   public boolean equals(Object bar) {
     if(!(bar instanceof Bar)) {

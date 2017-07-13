@@ -27,7 +27,7 @@ public class App {
 
     get("/location/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      model.put("template", "templates/location");
+      model.put("template", "templates/location.vtl");
       Location routeLocation = Location.find(Integer.parseInt(request.params(":id")));
       model.put("location", routeLocation);
       return new ModelAndView(model, layout);
